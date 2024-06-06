@@ -2,6 +2,10 @@ const asyncHandler = require('../asyncHandler.js');
 const ApiError = require('../ApiError.js');
 const Admin = require('../models/Admin.js');
 const ApiResponse = require('../ApiResponse.js');
+const access_token_secret='hasham'
+const access_token_expiry='1d'
+const refresh_token_secret='flight'
+const refresh_token_expiry='10d'
 
 const generateAccessAndRefreshTokens = async (userId) => {
     try {
@@ -113,7 +117,7 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
     }
 
     try {
-        const decodedToken = jwt.verify(incomingRefreshToken, process.env.refresh_token_secret);
+        const decodedToken = jwt.verify(incomingRefreshToken, refresh_token_secret);
 
         const user = await Admin.findById(decodedToken?._id);
 
