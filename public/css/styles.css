@@ -25,12 +25,12 @@ body{
     background: rgba(0,0,0,0.3);
     border: 1px solid rgba(255,255,255,0.3);
     border-radius: 20px;
-    width: 30%;
+    width: 350px;
     height:500px;
     margin-top:100px;
 }
 .container img{
-    margin-top: -160px;
+    margin-top: -190px;
     width:200px;
 }
 form{
@@ -63,4 +63,8 @@ form{
 .container a{
     color: white;
     margin-top: 6%;
+}
+.container .image{
+    margin-top: -130px;
+    width: 200px;
 }

@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
-const access_token_secret='hasham'
-const access_token_expiry='1d'
-const refresh_token_secret='flight'
-const refresh_token_expiry='10d'
 
 const adminSchema = new mongoose.Schema({
   username: {type:String, required:true, unique:true},
@@ -29,8 +25,8 @@ adminSchema.methods.generateAccessToken = function(){
     username: this.username,
     password: this.password
   },
-  access_token_secret,{
-    expiresIn: access_token_expiry
+  process.env.access_token_secret,{
+    expiresIn: process.env.access_token_expiry
   }
 )
 }
@@ -38,8 +34,8 @@ adminSchema.methods.generateRefreshToken = function(){
   return jwt.sign({
     _id: this._id
   },
-  refresh_token_secret,{
-    expiresIn: refresh_token_expiry
+  process.env.refresh_token_secret,{
+    expiresIn: process.env.refresh_token_expiry
   }
 )
 }
